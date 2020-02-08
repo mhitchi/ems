@@ -24,7 +24,6 @@ connection.connect(function(err) {
   console.log("connected as id " + connection.threadId);
   // start inquiring
   start();
-  connection.end();
 });
 
 //ask initial question
@@ -162,7 +161,8 @@ const askEmployeeViewQ = () => {
       choices: [
         "Role",
         "Department",
-        "Manager"
+        "Manager",
+        "View All"
       ]
     },
   ).then((response) => {
@@ -172,26 +172,70 @@ const askEmployeeViewQ = () => {
       case "role":
         console.log("role");
         //get roles from db
+        showRoles()
       break;
       case "department":
         console.log("department");
         //get departments from db
+        showDepartments();
       break;
       case "manager":
         console.log("manager");
         //get managers from db
+        showManagers();
       break;
+      case "view all":
+        console.log("all");
+        showEmployees();
     }
   });
 }
 
 const showRoles = () => {
   //get roles
+  var query = connection.query(
+    "SELECT * FROM roles",
+    (err, res) => {
+      if (err) throw err;
+      console.log(res)
+    }
+  );
+
+  console.log(query.sql);
   //ask if they'd like to add a role, view employees by role, or exit
 }
 
 const showDepartments = () => {
   //get departments
+  var query = connection.query(
+    "SELECT * FROM departments",
+    (err, res) => {
+      if (err) throw err;
+      console.log(res)
+    }
+  );
+
+  console.log(query.sql);
+  //ask if they'd like to add a department, view employees by department, or exit
+}
+
+const showManagers = () => {
+  //get managers
+
+  //ask if they'd like to view employees by managers, update an employee's manager, or exit
+}
+
+const showEmployees = () => {
+  //get departments
+  var query = connection.query(
+    "SELECT * FROM employees",
+    (err, res) => {
+      if (err) throw err;
+      console.log(res)
+    }
+  );
+
+  console.log(query.sql);
   //ask if they'd like to add a department, view employees by department, or exit
 }
 
