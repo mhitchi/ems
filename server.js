@@ -249,7 +249,7 @@ const showEmployees = () => {
 }
 
 const addEmployee = () => {
-  // showRoles();
+  showRoles();
   //ask for first_name, last_name, role, is_manager
   inquirer.prompt([
     {
@@ -277,12 +277,12 @@ const addEmployee = () => {
       name: "role_id",
     }
   ]).then((response) => {
-    let is_manager = (response.is_manager);
+    let is_manager = response.is_manager;
     let first_name = response.first_name;
     let last_name = response.last_name;
     var role_id = response.role_id;
 
-    const dbAdd = (first_name, last_name, role_id, is_manager) => {
+    const dbAddEmp = (first_name, last_name, role_id, is_manager) => {
       //add to db
       var query = connection.query(
         "INSERT INTO employees SET ?",
@@ -306,7 +306,7 @@ const addEmployee = () => {
         //WORKING
         is_manager = true;
         //add to db
-        dbAdd(first_name, last_name, role_id, is_manager);
+        dbAddEmp(first_name, last_name, role_id, is_manager);
       break;
       case "No":
         //WORKING
@@ -314,7 +314,7 @@ const addEmployee = () => {
         //check if department has a manager
         //if department has a manager, add manager_id
         //add to db
-        dbAdd(first_name, last_name, role_id, is_manager);
+        dbAddEmp(first_name, last_name, role_id, is_manager);
       break;
     }
   });
@@ -322,8 +322,45 @@ const addEmployee = () => {
 
 const addRole = () => {
   //ask for title, salary, department
-  //match department to department_id
-  //add to db
+  showDepartments();
+  //ask for first_name, last_name, role, is_manager
+  inquirer.prompt([
+    {
+      type: "input",
+      message: "What is this role's title?",
+      name: "title",
+    },
+    {
+      type: "input",
+      message: "What is this role's salary?",
+      name: "salary",
+    },
+    {
+      type: "list",
+      message: "What is this role's department id?",
+      name: "department_id",
+    }
+  ]).then((response) => {
+    let title = response.title;
+    let salary = response.salary;
+    let department_id = response.department_id;
+
+    //add to db
+    var query = connection.query(
+      "INSERT INTO employees SET ?",
+      {
+        title: title,
+        salary: salary,
+        department_id: department_id
+      },
+      function(err, res) {
+        if (err) throw err;
+        console.log(res.affectedRows + " role inserted!\n");
+      }
+    );
+
+    console.log(query.sql);
+  });
 }
 
 const addDepartment = () => {
