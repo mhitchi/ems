@@ -5,27 +5,27 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
 
-// const connection = mysql.createConnection({
-//   host: "localhost",
+const connection = mysql.createConnection({
+  host: "localhost",
 
-//   // Your port; if not 3306
-//   port: 3306,
+  // Your port; if not 3306
+  port: 3306,
 
-//   // Your username
-//   user: "root",
+  // Your username
+  user: "root",
 
-//   // Your password
-//   password: "052095Meg!",
-//   database: "employee_DB"
-// });
+  // Your password
+  password: "052095Meg!",
+  database: "employee_DB"
+});
 
-// connection.connect(function(err) {
-//   if (err) throw err;
-//   console.log("connected as id " + connection.threadId);
-//   // start inquiring
-//   start();
-//   connection.end();
-// });
+connection.connect(function(err) {
+  if (err) throw err;
+  console.log("connected as id " + connection.threadId);
+  // start inquiring
+  start();
+  connection.end();
+});
 
 //ask initial question
 const start = () => {
@@ -111,5 +111,3 @@ const askUpdateQ = () => {
     }
   });
 }
-
-start();
