@@ -49,5 +49,12 @@ VALUES ("Perkins", 13);
 -- Rufus Scrimgeor also an auror at one point
 -- Bob Ogden was head of the Magical Law Enforcement Squad at one point
 -- some of these employees are dead
+-- employees without managers
 INSERT INTO employees (first_name, last_name, role_id)
-VALUES ("Cornelius", "Fudge", 1),("Rufus", "Scrimgeor", 1),("Harry", "Potter", 3),("Kingsley", "Shacklebolt", 9),("Nymphadora", "Tonks", 9),("Alastor", "Moody", 9),("Frank", "Longbottom", 9),("Alice", "Longbottom", 9),("John", "Dawlish", 9),("Gawain", "Robards", 9),("Hesphaestus", "Gore", 9),("Mafalda", "Hopkirk", 10),("Albus", "Dumbledore", 11),("Percy", "Weasley", 11),("Arthur", "Weasley", 14),("Barty", "Crouch Sr.", 6),("Ludo", "Bagman", 8),("Pius", "Thicknesse", 3),("Dolores", "Umbridge", 31), ("Broderick", "Bode", 2),("Amelia", "Bones", 3),("Reginald", "Cattermole", 32),("Dirk", "Cresswell", 19),("Amos", "Diggory", 18),("Madam", "Edgecombe", 24),("Griselda", "Marchbanks", 11),("Bob", "Ogden", 12),("Tiberius", "Ogden", 11),("Newt", "Scamander", 18);
+VALUES ("Cornelius", "Fudge", 1),("Rufus", "Scrimgeor", 1),("Harry", "Potter", 3),("Arthur", "Weasley", 14),("Barty", "Crouch Sr.", 6),("Ludo", "Bagman", 8),("Dolores", "Umbridge", 31), ("Broderick", "Bode", 2),("Reginald", "Cattermole", 32),("Dirk", "Cresswell", 19),("Amos", "Diggory", 18),("Madam", "Edgecombe", 24),("Newt", "Scamander", 18),("Amelia", "Bones", 3),("Pius", "Thicknesse", 3);
+
+-- also heads of magical law enforcement
+
+-- employees with managers
+INSERT INTO employees (first_name, last_name, role_id, manager_id)
+VALUES ("Kingsley", "Shacklebolt", 9, 3),("Nymphadora", "Tonks", 9, 15),("Alastor", "Moody", 9, 16),("Frank", "Longbottom", 9, 15),("Alice", "Longbottom", 9, 15),("John", "Dawlish", 9, 3),("Gawain", "Robards", 9, 3),("Hesphaestus", "Gore", 9, 3),("Mafalda", "Hopkirk", 10, 3),("Albus", "Dumbledore", 11, 16),("Percy", "Weasley", 11, 3),("Griselda", "Marchbanks", 11, 3),("Bob", "Ogden", 12, 3),("Tiberius", "Ogden", 11, 3),
