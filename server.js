@@ -282,20 +282,39 @@ const addEmployee = () => {
     let last_name = response.last_name;
     var role_id = response.role_id;
 
+    const dbAdd = (first_name, last_name, role_id, is_manager) => {
+      //add to db
+      var query = connection.query(
+        "INSERT INTO employees SET ?",
+        {
+          first_name: first_name,
+          last_name: last_name,
+          role_id: role_id,
+          is_manager: is_manager
+        },
+        function(err, res) {
+          if (err) throw err;
+          console.log(res.affectedRows + " employee inserted!\n");
+        }
+      );
+
+      console.log(query.sql);
+    }
+
     switch (is_manager) {
       case "Yes":
-        //is_manager = true
+        //WORKING
         is_manager = true;
-        console.log(is_manager);
         //add to db
+        dbAdd(first_name, last_name, role_id, is_manager);
       break;
       case "No":
-        //is_manager = false
+        //WORKING
         is_manager = false;
-        console.log(is_manager);
         //check if department has a manager
         //if department has a manager, add manager_id
         //add to db
+        dbAdd(first_name, last_name, role_id, is_manager);
       break;
     }
   });
