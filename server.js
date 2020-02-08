@@ -194,7 +194,7 @@ const askEmployeeViewQ = () => {
 const showRoles = () => {
   //get roles
   var query = connection.query(
-    "SELECT * FROM roles",
+    "SELECT title FROM roles",
     (err, res) => {
       if (err) throw err;
       console.log(res)
@@ -208,7 +208,7 @@ const showRoles = () => {
 const showDepartments = () => {
   //get departments
   var query = connection.query(
-    "SELECT * FROM departments",
+    "SELECT name FROM departments",
     (err, res) => {
       if (err) throw err;
       console.log(res)
@@ -221,6 +221,15 @@ const showDepartments = () => {
 
 const showManagers = () => {
   //get managers
+    var query = connection.query(
+      "SELECT * FROM employees WHERE is_manager = true",
+      (err, res) => {
+        if (err) throw err;
+        console.log(res)
+      }
+    );
+  
+    console.log(query.sql);
 
   //ask if they'd like to view employees by managers, update an employee's manager, or exit
 }
