@@ -323,7 +323,7 @@ const addEmployee = () => {
 const addRole = () => {
   //ask for title, salary, department
   showDepartments();
-  //ask for first_name, last_name, role, is_manager
+  //ask for title, salary, department_id
   inquirer.prompt([
     {
       type: "input",
@@ -365,7 +365,29 @@ const addRole = () => {
 
 const addDepartment = () => {
   //ask for name
-  //add to db
+  inquirer.prompt(
+    {
+      type: "input",
+      message: "What is this department's name?",
+      name: "name",
+    }
+  ).then((response) => {
+    let name = response.name;
+
+    //add to db
+    var query = connection.query(
+      "INSERT INTO departments SET ?",
+      {
+        name: name
+      },
+      function(err, res) {
+        if (err) throw err;
+        console.log(res.affectedRows + " department inserted!\n");
+      }
+    );
+
+    console.log(query.sql);
+  });
 }
 
 const updateRole = () => {

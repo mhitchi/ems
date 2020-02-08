@@ -1,6 +1,6 @@
 
 INSERT INTO departments (name)
-VALUES ("Minister of Magic"),("Department of Magical Law Enforcement"),("Department of Magical Accidents and Catastrophes"),("Department for the Regulation and Control of Magical Creatures"),("Department of Interational Magical Cooperation"),("Department of Magical Transportation"),("Department of Magical Games and Sports"),("Department of Mysteries"),("Magical Maintenance");
+VALUES ("Minister of Magic"),("Department of Magical Law Enforcement"),("Department of Magical Accidents and Catastrophes"),("Department for the Regulation and Control of Magical Creatures"),("Department of Interational Magical Cooperation"),("Department of Magical Transportation"),("Department of Magical Games and Sports"),("Department of Mysteries"),("Department of Magical Maintenance");
 
 INSERT INTO roles (title, department_id)
 VALUES ("Minister of Magic", 1),("Unspeakable", 8),("Head of Department of Magical Law Enforcement", 2),("Head of Department of Magical Accidents and Catastrophes", 3),("Head of Department for the Regulation and Control of Magical Creatures", 4),("Head of Department of Interational Magical Cooperation", 5),("Head of Department of Magical Transportation", 6),("Head of Department of Magical Games and Sports", 7);
