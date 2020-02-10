@@ -392,10 +392,75 @@ const addDepartment = () => {
 
 const updateRole = () => {
   //ask employee first_name, last_name
-  //show employee info
-  //ask what the new role is
-  //show employee info
-  //update db
+  inquirer.prompt([
+    {
+      type: "input",
+      message: "What is the employee's first name?",
+      name: "first_name",
+    },
+    {
+      type: "input",
+      message: "What is the employee's last name?",
+      name: "last_name",
+    }
+  ]).then((response) => {
+    let first_name = response.first_name;
+    let last_name = response.last_name;
+
+    //get employee from db
+    var query = connection.query(
+      "SELECT * FROM employees WHERE ? AND ?",
+      [
+        {
+          first_name: first_name
+        },
+        {
+          last_name: last_name
+        }
+      ],
+      function(err, res) {
+        if (err) throw err;
+        //ask new role
+        inquirer.prompt(
+          {
+            type: "input",
+            message: `What is ${first_name} ${last_name}'s new role_id?`,
+            name: "role_id",
+          }
+        ).then((response) => {
+          let role_id = response.role_id;
+    
+          updateRoleDB(first_name, last_name, role_id);
+      });
+  });
+
+  const updateRoleDB = (first_name, last_name, role_id) => {
+
+    //update db
+    var query = connection.query(
+      "UPDATE employees SET ? WHERE ? AND ?;",
+      [
+        {
+          role_id: role_id
+        },
+        {
+          first_name: first_name
+        },
+        {
+          last_name: last_name
+        }
+      ],
+      function(err, res) {
+        if (err) throw err;
+        console.log(res.affectedRows + " employees updated!\n");
+        //TODO if role = 3-8, is_manager = true
+        // // Call deleteProduct AFTER the UPDATE completes
+        // deleteProduct();
+      }
+    );
+    console.log(query.sql);
+}
+  });
 }
 
 const updateManager = () => {
